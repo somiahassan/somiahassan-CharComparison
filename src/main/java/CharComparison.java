@@ -11,6 +11,24 @@ public class CharComparison {
      * @return -1 if A is less than B, 1 if A is greater than B, and 0 if the two arrays are identical.
      */
     public int compare(char[] a, char[] b){
-        return 0;
+        int minLength = Math.min(a.length, b.length);
+
+        // Compare characters at each index
+        for (int i = 0; i < minLength; i++) {
+            if (a[i] < b[i]) {
+                return -1; // Array a is lexicographically less than array b
+            } else if (a[i] > b[i]) {
+                return 1; // Array a is lexicographically greater than array b
+            }
+        }
+
+        // If all characters are equal up to the length of the shorter array, compare lengths
+        if (a.length < b.length) {
+            return -1; // Array a is lexicographically less because it's shorter
+        } else if (a.length > b.length) {
+            return 1; // Array a is lexicographically greater because it's longer
+        }
+
+        return 0; // Arrays are identical
     }
 }
